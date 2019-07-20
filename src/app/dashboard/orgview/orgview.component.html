@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+      <div class="col-lg-4">
+          <br>
+          <br>
+            <h3>My<span class="col">Organization :</span></h3>
+      </div>
+      <div class="col-lg-5">
+      </div>
+    <div class="col-lg-3 text-center">
+        <br>
+        <br>
+        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Edit<span class="col"> Organization</span></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeBtn>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form name="data" #data="ngForm" (ngSubmit)="update(data.value)">
+            <div class="modal-body mx-5" *ngFor="let data of bind"> 
+                    <div class="md-form mb-3 mt-3">
+                      <input type="text"  class="form-control validate" placeholder="Organization Name" name="myorgname" [(ngModel)]='data.myorgname' >
+                      <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                    </div>
+                    <div class="md-form mb-3 mt-3">
+                        <input type="text"  class="form-control validate" placeholder="Number Of Peer" name="peer" [(ngModel)]='data.peer'>
+                        <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                      </div>
+                    <div class="md-form mb-3">
+                      <input type="text" class="form-control validate" placeholder="Number Of User" name="user" [(ngModel)]='data.user'>
+                      <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label> -->
+                    </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="submit" class="btn btn-dark">Submit</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center">
+        <a class="btn btn-success text-white btn-rounded mb-4" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalLoginForm">Edit Org</a>
+      </div>
+  
+      </div>
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-lg-8">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Organization Name</th>
+                <th>No Of Peer</th>
+                <th>No Of User</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detail of bind">
+                <td>{{detail.myorgname}}</td>
+                <td>{{detail.peer}}</td>
+                <td>{{detail.user}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-lg-2">
+    </div>
+
+  </div>
+
+</div>

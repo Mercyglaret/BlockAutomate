@@ -9,8 +9,9 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NetworkComponent } from './dashboard/network/network.component';
-import { PeerComponent } from './dashboard/peer/peer.component';
+import { NetworkviewComponent } from './dashboard/networkview/networkview.component';
 import { SetupOrgComponent } from './dashboard/setup-org/setup-org.component';
+import { OrgviewComponent } from './dashboard/orgview/orgview.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import { SetupOrgComponent } from './dashboard/setup-org/setup-org.component';
     LoginComponent,
     DashboardComponent,
     NetworkComponent,
-    PeerComponent,
-    SetupOrgComponent
+    NetworkviewComponent,
+    SetupOrgComponent,
+    OrgviewComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { SetupOrgComponent } from './dashboard/setup-org/setup-org.component';
     children:[
       { path:'setup_myorg', component:SetupOrgComponent },
       { path:'network', component:NetworkComponent },
-      { path:'peer', component:PeerComponent }
+      { path:'networkview/:id', component:NetworkviewComponent },
+      { path:'orgview', component:OrgviewComponent }
     ]}
     ])
   ],

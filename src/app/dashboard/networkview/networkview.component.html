@@ -1,0 +1,156 @@
+
+<div class="features-5">
+
+    
+
+    <div class="container">
+      <!-- <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3 class="title">About <span></span>Network:</span></h3>
+        </div>
+      </div> -->
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="info">
+                    <div class="icon">
+                        <i class="material-icons">view_carousel</i>
+                    </div>
+                    <h4 class="info-title">Network<span> Name</span></h4>
+                    <p>{{result.Netname}}</p>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="info">
+                    <div class="icon">
+                        <i class="material-icons">format_paint</i>
+                    </div>
+                    <h4 class="info-title">Purpose<span> Of Network</span></h4>
+                    <p>{{result.Type}}</p>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="info">
+                    <div class="icon">
+                        <i class="material-icons">dashboard</i>
+                    </div>
+                    <h4 class="info-title">No<span> Of Organization</span></h4>
+                    <p>{{result.Norg}}</p>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-8">
+                <h3 class="title"><span>Organization</span></h3>
+            </div>
+            <div class="col-lg-3">
+              </div>
+            
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-lg-2">
+              </div>
+              <div class="col-lg-8">
+                  <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Organization Name</th>
+                          <th>No Of Peer</th>
+                          <th>No Of User</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of Bind">
+                          <td>{{data.myorgname}}</td>
+                          <td>{{data.peer}}</td>
+                          <td>{{data.user}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+              <div class="col-lg-2">
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-1">
+                  </div>
+                  <div class="col-lg-8">
+                      <h3 class="title"><span>Other Organization</span></h3>
+                  </div>
+                  <div class="col-lg-3 text-center">
+                      <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Add Other<span> Organization</span></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeBtn>
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form name="data" #data="ngForm" (ngSubmit)="AddOrg(data.value)">
+                          <div class="modal-body mx-5">
+                            <div class="md-form mb-3 mt-3">
+                              <input type="text"  class="form-control" placeholder="Other Organization Name" name="Aorgname" #Aorgname="ngModel" ngModel>
+                              <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                            </div>
+                            <div class="md-form mb-3 mt-3">
+                                <input type="text"  class="form-control" placeholder="Number Of Peer" name="Apeer" #Apeer="ngModel" ngModel>
+                                <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                              </div>
+                            <div class="md-form mb-3">
+                              <input type="text" class="form-control" placeholder="Number Of User" name="Auser" #Auser="ngModel" ngModel>
+                              <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label> -->
+                            </div>
+                          </div>
+                          <div class="modal-footer d-flex justify-content-center">
+                            <!-- <button class="btn btn-dark">Submit</button> -->
+                          <button type="submit" class="btn btn-dark">Submit</button>
+                            <!-- <a class="btn btn-dark" routerLink="/dashboard/peer">Submit</a> -->
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <a class="btn btn-success text-white btn-rounded mb-4" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalLoginForm">Add New</a>
+                    </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-8">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Organization Name</th>
+                            <th>No Of Peer</th>
+                            <th>No Of User</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let data of otherorg">
+                            <td>{{data.Aorgname}}</td>
+                            <td>{{data.Apeer}}</td>
+                            <td>{{data.Auser}}</td>
+                            <td [ngClass]="isSubmittingForm ? 'disabled-link' : ''" (click)="delAorg(data.id)"><i class="material-icons text-success font">delete</i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <div class="col-lg-2">
+                </div>
+              </div>
+    </div>
+</div>
+
+  

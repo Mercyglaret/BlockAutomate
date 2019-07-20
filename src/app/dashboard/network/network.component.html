@@ -3,7 +3,7 @@
       <div class="col-lg-4">
         <br>
         <br>
-          <h3>My<span> Network :</span></h3>
+          <h3>My<span> Network</span></h3>
     </div>
     <div class="col-lg-5">
     </div>
@@ -20,57 +20,57 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form name="data" #data="ngForm" (ngSubmit)="network(data.value)">
+            <form name="data" #data="ngForm" (ngSubmit)="addNetwork(data.value)">
             <div class="modal-body mx-5">
               <div class="md-form mb-3 mt-3">
-                <input type="text"  class="form-control" placeholder="Organazation Name" name="orgname" #orgname="ngModel" ngModel>
-                <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                <input type="text"  class="form-control" placeholder="Network Name" name="netname" #netname="ngModel" ngModel>
               </div>
               <div class="md-form mb-3 mt-3">
-                  <input type="text"  class="form-control" placeholder="Number Of Network" name="peer" #peer="ngModel" ngModel>
-                  <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                  <input type="text"  class="form-control" placeholder="Purpose Of Network" name="type" #type="ngModel" ngModel>
                 </div>
               <div class="md-form mb-3">
-                <input type="text" class="form-control" placeholder="Number of users" name="user" #user="ngModel" ngModel>
-                <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label> -->
+                <input type="text" class="form-control" placeholder="Number Of Orgnization" name="norg" #norg="ngModel" ngModel>
               </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-              <!-- <button class="btn btn-dark">Submit</button> -->
-              <button type="submit" class="btn btn-dark">Submit</button>
-              <!-- <a class="btn btn-dark" routerLink="/dashboard/peer">Submit</a> -->
+            <button type="submit" class="btn btn-dark">Submit</button>
             </div>
             </form>
           </div>
         </div>
       </div>
       <div class="text-center">
-        <a class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Add New</a>
+        <a class="btn btn-success text-white btn-rounded mb-4" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalLoginForm">Add New</a>
       </div>
       </div>
   </div>
 
 <br>
-<table class="table table-hover">
+<div class="container">
+<ul class="collapsible">
+<li>
+<div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+<table class="table table-hover table-responsive collapsible-body">
     <thead>
       <tr>
         <th>S.No</th>
-        <th>Org-Name</th>
-        <th>No of Peer</th>
-        <th>No of User</th>
+        <th>Network Name</th>
+        <th>Purposr Of Network</th>
+        <th>No of Orgnization</th>
         <th>Action</th>
-      </tr>
+      </tr> 
     </thead>
     <tbody>
-      <tr *ngFor="let data of detail">
-        <td>{{data.id}}</td>
-        <td>{{data.orgname}}</td>
-        <td>{{data.peer}}</td>
-        <td>{{data.user}}</td>
-        <td (click)="del(data.id)"><i class="material-icons text-success">delete</i></td>
-
+      <tr *ngFor="let data of detail; let i=index" >
+        <td  class="hover"  class="{{data.id}}">{{i+1}}</td>
+        <td class="text-capitalize"><a routerLink="/dashboard/networkview/{{data.id}}"><b>{{data.netname}}</b></a></td>
+        <td class="text-capitalize">{{data.type}}</td>
+        <td>{{data.norg}}</td>
+        <td [ngClass]="isSubmittingForm ? 'disabled-link' : ''" (click)="deleteNetworkData(data.id)"><i class="material-icons text-success">delete</i></td>
       </tr>
     </tbody>
   </table>
-
+  </li>
+  </ul>
+</div>
 </div>

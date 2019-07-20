@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -7,13 +9,21 @@ import { DataService } from '../data.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  constructor(public _dataService: DataService) { }
+  constructor(public _dataService: DataService , public routing: Router) { }
   ngOnInit() {
   }
   db:any;
 fun(value){
 this._dataService.postData(value).then((data)=>{this.db=data;});
-console.log(value);
+Swal.fire({
+  type: 'success',
+  title: 'Signup successfully....',
+  text: 'Please click signin button to Login...',
+})
+this.routing.navigate(['/login'])
 }
+
+
+
 }
  

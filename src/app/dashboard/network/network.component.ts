@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from '../../data.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { $ } from 'protractor';
+
 @Component({
   selector: 'app-network',
   templateUrl: './network.component.html',
@@ -11,38 +14,81 @@ export class NetworkComponent implements OnInit {
   constructor(public dataService: DataService, public route: Router) { }
   detail:any;
   data:any={}
-  base:any={}
+  base:any={};
+  isSubmittingForm: boolean = false;
   ngOnInit() {
-    this.get();
+    this.getNetworkData();
   }
 
-  get(){
-    this.dataService.getNet()
-    .subscribe(data5 => { this.detail = data5 });
-    console.log(this.detail);
+  getNetworkData(){
+    this.dataService.getNet().subscribe(data5 => { 
+      this.detail = data5
+    });
   }
   
-  network(value){
-     this.data=value;
-     console.log(value.peer);
+  addNetwork(value){
+    this.isSubmittingForm = true;
+    //  console.log(value.peer);
     //  this.dataService.postnet(value);
-     this.dataService.postnet(value).then((data1)=>{this.base=data1;});
-    //  this.route.navigate(["/dashboard/peer"]);
-    this.closemodal();
-    this.get();
+     this.dataService.postnet(value).then((data1)=>{
+      //  this.base=data1;
+       this.isSubmittingForm = false;
+       this.closemodal();
+       this.getNetworkData();
+       this.data = {};
+       //  this.route.navigate(["/dashboard/peer"]);
+      }).catch(() =>  {
+        // Handle error here id anything wrong with the network
+        this.isSubmittingForm = false;
+        this.closemodal();
+        this.data = {};
+      });
   }
-  del(value){
-    this.dataService.deletenet(value).subscribe(res=>{
-      console.log(res)
+
+  deleteNetworkData(value){
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this imaginary file!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Deleted!',
+          'Your imaginary file has been deleted.',
+          'success'
+        )
+        this.isSubmittingForm = true;
+        this.dataService.deletenet(value).subscribe(res=>{
+          this.isSubmittingForm = false;
+          this.getNetworkData();
+        })
+      // For more information about handling dismissals please visit
+      // https://sweetalert2.github.io/#handling-dismissals
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
     })
-
-  
-
-}
-closemodal(){
-  this.closeBtn.nativeElement.click();
-
-}
    
+  }
+  // ViewNetworkData(value){
+  //   this.dataService.getNet().subscribe(data5 => { 
+  //     this.detail = data5
+  //     console.log(this.detail)
+  //     this.route.navigate(["/dashboard/networkview"])
 
-} 
+  //   });
+  //  }
+
+  closemodal(){
+    this.closeBtn.nativeElement.click();
+  }
+
+ }
