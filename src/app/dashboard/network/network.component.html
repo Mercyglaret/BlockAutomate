@@ -3,11 +3,11 @@
       <div class="col-lg-4">
         <br>
         <br>
-          <h3>My<span> Network</span></h3>
+          <h3 class="ml-3">My<span> Network</span></h3>
     </div>
-    <div class="col-lg-5">
+    <div class="col-lg-6">
     </div>
-    <div class="col-lg-3 text-center">
+    <div class="col-lg-2 text-center">
         <br>
         <br>
         <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -40,37 +40,41 @@
         </div>
       </div>
       <div class="text-center">
-        <a class="btn btn-success text-white btn-rounded mb-4" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalLoginForm">Add New</a>
+        <a class="btn btn-success text-white btn-rounded mb-4 ml-4" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalLoginForm">Add New</a>
       </div>
       </div>
   </div>
 
 <br>
-<div class="container">
-<ul class="collapsible">
-<li>
-<div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-<table class="table table-hover table-responsive collapsible-body">
-    <thead>
-      <tr>
-        <th>S.No</th>
-        <th>Network Name</th>
-        <th>Purposr Of Network</th>
-        <th>No of Orgnization</th>
-        <th>Action</th>
-      </tr> 
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of detail; let i=index" >
-        <td  class="hover"  class="{{data.id}}">{{i+1}}</td>
-        <td class="text-capitalize"><a routerLink="/dashboard/networkview/{{data.id}}"><b>{{data.netname}}</b></a></td>
-        <td class="text-capitalize">{{data.type}}</td>
-        <td>{{data.norg}}</td>
-        <td [ngClass]="isSubmittingForm ? 'disabled-link' : ''" (click)="deleteNetworkData(data.id)"><i class="material-icons text-success">delete</i></td>
-      </tr>
-    </tbody>
-  </table>
-  </li>
-  </ul>
+<div class="container table-responsive">
+
+    <section>
+  
+       <button class="accordion">
+        Network Details</button>
+       <div class="content">
+          <table class="table table-hover">
+              <thead>
+                <tr >
+                  <th>S.No</th>
+                  <th>Network Name</th>
+                  <th>Purposr Of Network</th>
+                  <th>No of Orgnization</th>
+                  <th>Action</th>
+                </tr> 
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of detail; let i=index" >
+                  <td  class="hover"  class="{{data.id}}">{{i+1}}</td>
+                  <td class="text-capitalize"><a routerLink="/dashboard/networkview/{{data.id}}"><b>{{data.netname}}</b></a></td>
+                  <td class="text-capitalize">{{data.type}}</td>
+                  <td>{{data.norg}}</td>
+                  <td [ngClass]="isSubmittingForm ? 'disabled-link' : ''" (click)="deleteNetworkData(data.id)"><i class="material-icons text-success">delete</i></td>
+                </tr>
+              </tbody>
+            </table>
+       </div>
+       
+       </section>
 </div>
 </div>

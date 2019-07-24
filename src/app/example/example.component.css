@@ -1,31 +1,9 @@
-.back{
-    background-color: #262626;
-}
-.col{
-    color: green;
-    margin-left: -10px !important;
-    font-weight: bolder;
-}
-/* i{
-    font-size: 50px;
-} */
-.modal {
-    position: fixed;
-    top: 100px;
-    left: 0;
-    z-index: 1050;
-    display: none;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    outline: 0;
-}
 .accordion {
     font-family: 'Open Sans', sans-serif;
     background-color: #F0F1EF;
-    color: #262626;
+    color: #344351;
     cursor: pointer;
-    padding: 15px;
+    padding: 25px;
     width: 100%;
     border: none;
     outline: none !important;
@@ -35,14 +13,14 @@
    }
   
   .accordion:hover {
-    background-color: #262626;
+    background-color: #344351;
     color:#F0F1EF;
-    border-radius: 0px 0px 0px 0px;
+    border-radius: 8px 8px 0px 0px;
   }
   .activetoggle {
-   background-color: #262626;
+   background-color: #344351;
     color:#F0F1EF;
-    border-radius: 0px 0px 0px 0px; }
+    border-radius: 8px 8px 0px 0px; }
   
   .content {
     font-family: 'Open Sans', sans-serif;
@@ -50,8 +28,8 @@
     padding: 0 28px;
     display: none;
     overflow: hidden;
-    color: #262626;
-    background-color: white;
+    color: #F0F1EF;
+    background-color: #344351;
     border-radius: 0px 0px 8px 8px;
     }
   .accordion:after {

@@ -25,7 +25,126 @@ h3{
 
 
   a{
-      color: black;
+      color: #262626;
       text-decoration: underline;
 
   }
+  .accordion {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F0F1EF;
+    color: #262626;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    outline: none !important;
+    text-align: left; 
+    font-size: 16px;
+    font-weight: 600;
+   }
+  
+  .accordion:hover {
+    background-color: #262626;
+    color:#F0F1EF;
+    border-radius: 8px 8px 0px 0px;
+  }
+  .activetoggle {
+   background-color: #262626;
+    color:#F0F1EF;
+    border-radius: 0px 0px 0px 0px; }
+  
+  .content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    padding: 0 28px;
+    display: none;
+    overflow: hidden;
+    color: #F0F1EF;
+    background-color: white;
+    border-radius: 0px 0px 8px 8px;
+    }
+  .accordion:after {
+      content: '\02795'; 
+      font-size: 13px;
+      color: #F0F1EF;
+      float: right;
+      margin-left: 5px;
+  }
+  
+  .activetoggle:after {
+    content: "\2796"; 
+      color:#ffffff !important;
+  
+  }
+  .wrap-accordion {
+    margin-bottom: 1.2rem 0;
+  }
+  
+  input[type='checkbox'] {
+    display: none;
+  }
+  
+  .lbl-toggle {
+    display: block;
+  
+    font-weight: bold;
+    font-family:  'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    padding: 1rem;
+    color: #F0F1EF;
+    background: #F0F1EF;
+    cursor: pointer;
+  
+    border-radius: 7px;
+    transition: all 0.25s ease-out;
+  }
+  
+  .lbl-toggle:hover {
+    color: #F0F1EF;
+  }
+  
+  .lbl-toggle::before {
+    content: ' ';
+    display: inline-block;
+  
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid currentColor;
+    vertical-align: middle;
+    margin-right: .7rem;
+    transform: translateY(-2px);
+    transition: transform .2s ease-out;
+  }
+  
+  .toggle:checked + .lbl-toggle::before {
+    transform: rotate(90deg) translateX(-3px);
+  }
+  
+  .accordion-content {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .25s ease-in-out;
+  }
+  
+  .toggle:checked + .lbl-toggle + .accordion-content {
+    max-height: 350px;
+  }
+  
+  .toggle:checked + .lbl-toggle {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .accordion-content .content-inner {
+    background: rgba(250, 224, 66, .2);
+    border-bottom: 1px solid rgba(250, 224, 66, .45);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding: .5rem 1rem;
+  }
+  .col-centered{
+      float: none;
+      margin: 0 auto;
+      width:50%;
+  }
+  

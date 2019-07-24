@@ -15,6 +15,8 @@ export class DataService {
   editdata:any;
   data6:any;
   data8:any;
+  data11:any;
+  data12:any;
   mydata:any; 
 
   constructor(private _httpClient: HttpClient) { }
@@ -117,4 +119,105 @@ export class DataService {
       }
     ));
     }
+
+    postPeer(value){
+      return this._httpClient.post("https://5d15e022df4e5f00145ca8c1.mockapi.io/peerdetails",value).toPromise()
+     .then((data11)=>{ return data11 /* NOTE: use 'return data2' if  u r using multiline */ })
+    }
+    getPeer(){
+      return this._httpClient.get("https://5d15e022df4e5f00145ca8c1.mockapi.io/peerdetails")
+      .pipe(map(res=> {
+        this.data12 = res;
+        return this.data12;
+        
+      }
+    ))
+  
+    }
+
+
+    deletePeer(value){
+      console.log(value);
+      
+      return this._httpClient.delete('https://5d15e022df4e5f00145ca8c1.mockapi.io/peerdetails/'+value)
+      .pipe(map(res=> {
+        this.del = res;
+        return this.del;
+      }
+    ));
+    }
+
+    postOrder(value){
+      return this._httpClient.post("https://5d15e022df4e5f00145ca8c1.mockapi.io/orderdetail",value).toPromise()
+     .then((data11)=>{ return data11 /* NOTE: use 'return data2' if  u r using multiline */ })
+    }
+
+    getOrder(){
+      return this._httpClient.get("https://5d15e022df4e5f00145ca8c1.mockapi.io/orderdetail")
+      .pipe(map(res=> {
+        this.data12 = res;
+        return this.data12;
+        
+      }
+    ))
+  
+    }
+
+
+    deleteOrder(value){
+      console.log(value);
+      
+      return this._httpClient.delete('https://5d15e022df4e5f00145ca8c1.mockapi.io/orderdetail/'+value)
+      .pipe(map(res=> {
+        this.del = res;
+        return this.del;
+      }
+    ));
+    }
+
+    postUser(value){
+      return this._httpClient.post("https://5d36db6c86300e0014b647e8.mockapi.io/userdetails",value).toPromise()
+     .then((data12)=>{ return data12 /* NOTE: use 'return data2' if  u r using multiline */ })
+    }
+
+    getUser(){
+      return this._httpClient.get("https://5d36db6c86300e0014b647e8.mockapi.io/userdetails")
+      .pipe(map(res=> {
+        this.data12 = res;
+        return this.data12;
+        
+      }
+    ))
+  
+    }
+
+    deleteUser(value){
+      console.log(value);
+      
+      return this._httpClient.delete('https://5d36db6c86300e0014b647e8.mockapi.io/userdetails/'+value)
+      .pipe(map(res=> {
+        this.del = res;
+        return this.del;
+      }
+    ));
+    }
+
+
+    postChannel(value){
+      return this._httpClient.post("https://5d36db6c86300e0014b647e8.mockapi.io/channeldetail",value).toPromise()
+     .then((data12)=>{ return data12 /* NOTE: use 'return data2' if  u r using multiline */ })
+    }
+
+    
+    getChannel(){
+      return this._httpClient.get("https://5d36db6c86300e0014b647e8.mockapi.io/channeldetail")
+      .pipe(map(res=> {
+        this.data12 = res;
+        return this.data12;
+        
+      }
+    ))
+  
+    }
+
 }

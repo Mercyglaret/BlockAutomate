@@ -12,6 +12,7 @@ import { NetworkComponent } from './dashboard/network/network.component';
 import { NetworkviewComponent } from './dashboard/networkview/networkview.component';
 import { SetupOrgComponent } from './dashboard/setup-org/setup-org.component';
 import { OrgviewComponent } from './dashboard/orgview/orgview.component';
+import { ExampleComponent } from './example/example.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { OrgviewComponent } from './dashboard/orgview/orgview.component';
     NetworkComponent,
     NetworkviewComponent,
     SetupOrgComponent,
-    OrgviewComponent
+    OrgviewComponent,
+    ExampleComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { OrgviewComponent } from './dashboard/orgview/orgview.component';
     RouterModule.forRoot([
       { path:'', pathMatch:'full', redirectTo:'login'},
       { path:'login', component:LoginComponent},
+      { path:'example', component:ExampleComponent},
       { path:'signup', component:SignupComponent},
       { path:'dashboard', component:DashboardComponent,
     children:[

@@ -15,7 +15,10 @@ export class NetworkviewComponent implements OnInit {
   Bind:any;
   data:any;
   otherorg:any;
+  peerdetail:any;
+  channeldetail: any;
   id:any;
+  orderdetail:any;
   result:any={
     Id:'',
     Netname:'',
@@ -23,8 +26,11 @@ export class NetworkviewComponent implements OnInit {
     Norg:''
   };
   isSubmittingForm: boolean = false;
+  coll=document.getElementsByClassName("accordion");
+
   constructor(public routing:ActivatedRoute, public dataService:DataService, public route:Router) { }
   ngOnInit() {
+    this.get();
     this.id=this.routing.snapshot.params['id'];
     console.log(this.id)
       this.dataService.getNet().subscribe(data5 => { 
@@ -46,11 +52,19 @@ export class NetworkviewComponent implements OnInit {
         this.Bind = data5
         console.log(this.Bind)
           });
-          this.dataService.getAOrg().subscribe(data6 => { 
-            this.otherorg = data6
-            console.log(this.otherorg)
-              });    
+
+      this.dataService.getAOrg().subscribe(data6 => { 
+        this.otherorg = data6
+        console.log(this.otherorg)
+          }); 
+    
+      this.dataService.getChannel().subscribe(data7 => { 
+      this.channeldetail = data7
+      console.log(this.channeldetail)
+              });       
   }
+
+
 AddOrg(value){
   this.isSubmittingForm = true;
    this.dataService.postAorg(value).then((data1)=>{
@@ -66,6 +80,28 @@ AddOrg(value){
     });
   
 }
+
+AddChannel(value){
+  console.log(value);
+  
+  this.isSubmittingForm = true;
+   this.dataService.postChannel(value).then((data1)=>{
+     this.isSubmittingForm = false;
+     this.closemodal();
+     this.ngOnInit();
+     this.data = {};
+    }).catch(() =>  {
+      // Handle error here id anything wrong with the network
+      this.isSubmittingForm = false;
+      this.closemodal();
+      this.data = {};
+    });
+  
+}
+
+
+
+
 
 delAorg(value){
 
@@ -103,8 +139,27 @@ delAorg(value){
 
 
 
+
+
+
+
+
 closemodal(){
   this.closeBtn.nativeElement.click();
+}
+
+get(){
+  for (let i = 0; i < this.coll.length; i++) {
+    this.coll[i].addEventListener("click", function() {
+        this.classList.toggle("activetoggle");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    });
+}
 }
 
 }

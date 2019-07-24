@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from '../../data.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { $ } from 'protractor';
+// import * as $ from 'jquery';
 
+declare var $:any;
 @Component({
   selector: 'app-network',
   templateUrl: './network.component.html',
@@ -16,8 +17,12 @@ export class NetworkComponent implements OnInit {
   data:any={}
   base:any={};
   isSubmittingForm: boolean = false;
+  coll=document.getElementsByClassName("accordion");
+
   ngOnInit() {
     this.getNetworkData();
+    this.get();
+
   }
 
   getNetworkData(){
@@ -85,10 +90,21 @@ export class NetworkComponent implements OnInit {
   //     this.route.navigate(["/dashboard/networkview"])
 
   //   });
-  //  }
-
+  //  } 
   closemodal(){
     this.closeBtn.nativeElement.click();
   }
-
+  get(){
+    for (let i = 0; i < this.coll.length; i++) {
+      this.coll[i].addEventListener("click", function() {
+          this.classList.toggle("activetoggle");
+          var content = this.nextElementSibling;
+          if (content.style.display === "block") {
+              content.style.display = "none";
+          } else {
+              content.style.display = "block";
+          }
+      });
+  }
+  }
  }

@@ -52,9 +52,8 @@
   </div>
   <br>
   <div class="row">
-    <div class="col-lg-2">
-    </div>
-    <div class="col-lg-8">
+   
+    <div class="col-lg-12">
         <table class="table table-hover">
             <thead>
               <tr>
@@ -72,9 +71,245 @@
             </tbody>
           </table>
     </div>
-    <div class="col-lg-2">
-    </div>
+    
 
   </div>
+
+  <section>
+    <button class="accordion">
+      Peer</button>
+      <div class="content">
+        <div class="row">
+          <div class="col-lg-1">
+            </div>
+            <div class="col-lg-9">
+            </div>
+            <div class="col-lg-2 text-center">
+              <br>
+                <div class="modal fade" id="modalPeerForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h4 class="modal-title w-100 font-weight-bold">Add<span style="color:green">  Peer</span></h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeBtn1>
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form name="peerdata" #peerdata="ngForm" (ngSubmit)="AddPeer(peerdata.value)">
+                    <div class="modal-body mx-5">
+                      <div class="md-form mb-3 mt-3">
+                        <input type="text"  class="form-control" placeholder="Peer Name" name="peername" #peername="ngModel" ngModel>
+                        <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                      </div>
+                      <div class="md-form mb-3 mt-3">
+                          <input type="text"  class="form-control" placeholder="Peer Type" name="peertype" #peertype="ngModel" ngModel>
+                          <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                        </div>
+                      <div class="md-form mb-3">
+                        <input type="text" class="form-control" placeholder="Peer Port" name="peerport" #peerport="ngModel" ngModel>
+                        <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label> -->
+                      </div>
+                      <div class="md-form mb-3">
+                          <input type="text" class="form-control" placeholder="Peer Address" name="peeraddress" #peeraddress="ngModel" ngModel>
+                          <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label> -->
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                      <!-- <button class="btn btn-dark">Submit</button> -->
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                      <!-- <a class="btn btn-dark" routerLink="/dashboard/peer">Submit</a> -->
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <a class="btn btn-success text-white btn-rounded mb-4 ml-5" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalPeerForm">Add New</a>
+              </div>
+              </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-12">
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Peer Name</th>
+                      <th>Peer Type</th>
+                      <th>Peer Port</th>
+                      <th>Peer Address</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let pdata of peerdetail">
+                      <td>{{pdata.peername}}</td>
+                      <td>{{pdata.peertype}}</td>
+                      <td>{{pdata.peerport}}</td>
+                      <td>{{pdata.peeraddress}}</td>
+                      <td [ngClass]="isSubmittingForm ? 'disabled-link' : ''" (click)="delPeer(pdata.id)"><i class="material-icons text-success font">delete</i></td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+        </div>
+
+
+      </div>
+      <button class="accordion">
+        Order Details</button>
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-1">
+                  </div>
+                  <div class="col-lg-9">
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <br>
+                      <div class="modal fade" id="modalOrderForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Order<span> Details</span></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeBtn2>
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form name="orderdata" #orderdata="ngForm" (ngSubmit)="AddOrder(orderdata.value)">
+                          <div class="modal-body mx-5">
+                            <div class="md-form mb-3 mt-3">
+                              <input type="text"  class="form-control" placeholder="Order Name" name="ordername" #ordername="ngModel" ngModel>
+                              <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                            </div>
+                            <div class="md-form mb-3 mt-3">
+                                <input type="text"  class="form-control" placeholder="Order Type" name="ordertype" #ordertype="ngModel" ngModel>
+                                <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                              </div>
+                            <div class="md-form mb-3">
+                                <input type="text" class="form-control" placeholder="Order Address" name="orderaddress" #orderaddress="ngModel" ngModel>
+                                <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label> -->
+                              </div>
+                          </div>
+                          <div class="modal-footer d-flex justify-content-center">
+                            <!-- <button class="btn btn-dark">Submit</button> -->
+                          <button type="submit" class="btn btn-dark">Submit</button>
+                            <!-- <a class="btn btn-dark" routerLink="/dashboard/peer">Submit</a> -->
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <a class="btn btn-success text-white btn-rounded mb-4 ml-5" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalOrderForm">Add New</a>
+                    </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Order Name</th>
+                            <th>Order Type</th>
+                            <th>Order Address</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let odata of orderdetail">
+                            <td>{{odata.ordername}}</td>
+                            <td>{{odata.ordertype}}</td>
+                            <td>{{odata.orderaddress}}</td>
+                            <td [ngClass]="isSubmittingForm ? 'disabled-link' : ''" (click)="delOrder(odata.id)"><i class="material-icons text-success font">delete</i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+              </div>
+      
+        </div>
+
+        <button class="accordion">
+            User</button>
+            <div class="content">
+              <div class="row">
+                <div class="col-lg-1">
+                  </div>
+                  <div class="col-lg-9">
+                  </div>
+                  <div class="col-lg-2 text-center">
+                    <br>
+                      <div class="modal fade" id="modalUserForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Add<span style="color:green">  User</span></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeBtn3>
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form name="userdata" #userdata="ngForm" (ngSubmit)="AddUser(userdata.value)">
+                          <div class="modal-body mx-5">
+                            <div class="md-form mb-3 mt-3">
+                              <input type="text"  class="form-control" placeholder="User Name" name="username" #username="ngModel" ngModel>
+                              <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                            </div>
+                            <div class="md-form mb-3">
+                                <input type="text" class="form-control" placeholder="Password" name="password" #password="ngModel" ngModel>
+                                <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label> -->
+                              </div>
+                            <div class="md-form mb-3 mt-3">
+                                <input type="text"  class="form-control" placeholder="user Type" name="usertype" #usertype="ngModel" ngModel>
+                                <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                              </div>
+                           
+                          </div>
+                          <div class="modal-footer d-flex justify-content-center">
+                            <!-- <button class="btn btn-dark">Submit</button> -->
+                          <button type="submit" class="btn btn-dark">Submit</button>
+                            <!-- <a class="btn btn-dark" routerLink="/dashboard/peer">Submit</a> -->
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <a class="btn btn-success text-white btn-rounded mb-4 ml-5" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalUserForm">Add New</a>
+                    </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>User Name</th>
+                            <th>Password</th>
+                            <th>Peer Type</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let udata of userdetail">
+                            <td>{{udata.username}}</td>
+                            <td>{{udata.password}</td>
+                            <td>{{udata.usertype}}</td>
+                            <td [ngClass]="isSubmittingForm ? 'disabled-link' : ''" (click)="delUser(udata.id)"><i class="material-icons text-success font">delete</i></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+              </div>
+      
+      
+            </div>
+
+
+
+
+
+  </section>
 
 </div>
