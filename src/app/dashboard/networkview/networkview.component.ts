@@ -11,6 +11,11 @@ import { ActivatedRoute} from '@angular/router';
 })
 export class NetworkviewComponent implements OnInit {
   @ViewChild("closeBtn") closeBtn : ElementRef;
+  @ViewChild("closeBtn1") closeBtn1 : ElementRef;
+ dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+
   bind:any;
   Bind:any;
   data:any;
@@ -27,6 +32,7 @@ export class NetworkviewComponent implements OnInit {
   };
   isSubmittingForm: boolean = false;
   coll=document.getElementsByClassName("accordion");
+  drop: any;
 
   constructor(public routing:ActivatedRoute, public dataService:DataService, public route:Router) { }
   ngOnInit() {
@@ -56,14 +62,62 @@ export class NetworkviewComponent implements OnInit {
       this.dataService.getAOrg().subscribe(data6 => { 
         this.otherorg = data6
         console.log(this.otherorg)
+        // this.dropdownList.push(this.otherorg);
+       for(let i=0; i<this.otherorg[i].length;i++){
+            // this.drop.Id=this.otherorg.id;
+            // this.drop.Name=this.otherorg.Aorgname;
+        this.dropdownList.push(this.otherorg.Aorgname);
+
+          }
+         
+        // this.dropdownList.push(this.drop.name);
+        
+         
           }); 
+
+
     
       this.dataService.getChannel().subscribe(data7 => { 
       this.channeldetail = data7
       console.log(this.channeldetail)
-              });       
+              });  
+              
+     
+              
+              // this.dropdownList = [
+              //   { item_id: 1, item_text: 'Mumbai' },
+              //   { item_id: 2, item_text: 'Bangaluru' },
+              //   { item_id: 3, item_text: 'Pune' },
+              //   { item_id: 4, item_text: 'Navsari' },
+              //   { item_id: 5, item_text: 'New Delhi' }
+              // ];
+              this.selectedItems = [
+                { item_id: 3, item_text: 'Pune' },
+                { item_id: 4, item_text: 'Navsari' }
+              ];
+              this.dropdownSettings = {
+                singleSelection: false,
+                idField: 'item_id',
+                textField: 'item_text',
+                selectAllText: 'Select All',
+                unSelectAllText: 'UnSelect All',
+                itemsShowLimit: 3,
+                allowSearchFilter: true
+              };
+
+
+
+
+
   }
 
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
+  
 
 AddOrg(value){
   this.isSubmittingForm = true;
@@ -87,13 +141,13 @@ AddChannel(value){
   this.isSubmittingForm = true;
    this.dataService.postChannel(value).then((data1)=>{
      this.isSubmittingForm = false;
-     this.closemodal();
+     this.closemodal1();
      this.ngOnInit();
      this.data = {};
     }).catch(() =>  {
       // Handle error here id anything wrong with the network
       this.isSubmittingForm = false;
-      this.closemodal();
+      this.closemodal1();
       this.data = {};
     });
   
@@ -139,7 +193,44 @@ delAorg(value){
 
 
 
+delChannel(value){
 
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this imaginary file!',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, keep it'
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire(
+        'Deleted!',
+        'Your imaginary file has been deleted.',
+        'success'
+      )
+      this.isSubmittingForm = true;
+      this.dataService.deleteChannel(value).subscribe(res=>{
+        this.isSubmittingForm = false;
+        this.ngOnInit();
+      })
+    // For more information about handling dismissals please visit
+    // https://sweetalert2.github.io/#handling-dismissals
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire(
+        'Cancelled',
+        'Your imaginary file is safe :)',
+        'error'
+      )
+    }
+  })
+ 
+}
+
+
+closemodal1(){
+  this.closeBtn1.nativeElement.click();
+}
 
 
 

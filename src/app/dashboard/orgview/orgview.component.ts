@@ -37,7 +37,7 @@ export class OrgviewComponent implements OnInit {
         });
       this.dataService.getPeer().subscribe(data7 => { 
       this.peerdetail = data7
-      console.log(this.peerdetail)
+      console.log(this.peerdetail.length)
         });
       this.dataService.getOrder().subscribe(data8 => { 
       this.orderdetail = data8

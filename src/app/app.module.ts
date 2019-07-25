@@ -13,6 +13,7 @@ import { NetworkviewComponent } from './dashboard/networkview/networkview.compon
 import { SetupOrgComponent } from './dashboard/setup-org/setup-org.component';
 import { OrgviewComponent } from './dashboard/orgview/orgview.component';
 import { ExampleComponent } from './example/example.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ExampleComponent } from './example/example.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgMultiSelectDropDownModule,
     RouterModule.forRoot([
       { path:'', pathMatch:'full', redirectTo:'login'},
       { path:'login', component:LoginComponent},

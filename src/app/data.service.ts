@@ -220,4 +220,15 @@ export class DataService {
   
     }
 
+    deleteChannel(value){
+      console.log(value);
+      
+      return this._httpClient.delete('https://5d36db6c86300e0014b647e8.mockapi.io/channeldetail/'+value)
+      .pipe(map(res=> {
+        this.del = res;
+        return this.del;
+      }
+    ));
+    }
+
 }

@@ -3,12 +3,12 @@
       <div class="col-lg-4">
           <br>
           <br>
-            <h3>My<span class="col">Organization :</span></h3>
+            <h3>My<span class="col">Organization </span></h3>
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-6">
       </div>
-    <div class="col-lg-3 text-center">
-        <br>
+    <div class="col-lg-2">
+        <br> 
         <br>
         <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="md-form mb-3 mt-3">
                         <input type="text"  class="form-control validate" placeholder="Number Of Peer" name="peer" [(ngModel)]='data.peer'>
-                        <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                        <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> --> 
                       </div>
                     <div class="md-form mb-3">
                       <input type="text" class="form-control validate" placeholder="Number Of User" name="user" [(ngModel)]='data.user'>
@@ -44,7 +44,7 @@
       </div>
       
       <div class="text-center">
-        <a class="btn btn-success text-white btn-rounded mb-4" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalLoginForm">Edit Org</a>
+        <a class="btn btn-success text-white btn-rounded mb-4 ml-5" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalLoginForm">Edit Org</a>
       </div>
   
       </div>
@@ -156,6 +156,87 @@
 
 
       </div>
+
+
+
+      <button class="accordion">
+        User</button>
+        <div class="content">
+          <div class="row">
+            <div class="col-lg-1">
+              </div>
+              <div class="col-lg-9">
+              </div>
+              <div class="col-lg-2 text-center">
+                <br>
+                  <div class="modal fade" id="modalUserForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Add<span style="color:green">  User</span></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeBtn3>
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form name="userdata" #userdata="ngForm" (ngSubmit)="AddUser(userdata.value)">
+                      <div class="modal-body mx-5">
+                        <div class="md-form mb-3 mt-3">
+                          <input type="text"  class="form-control" placeholder="User Name" name="username" #username="ngModel" ngModel>
+                          <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                        </div>
+                        <div class="md-form mb-3">
+                            <input type="text" class="form-control" placeholder="Password" name="password" #password="ngModel" ngModel>
+                            <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label> -->
+                          </div>
+                        <div class="md-form mb-3 mt-3">
+                            <input type="text"  class="form-control" placeholder="user Type" name="usertype" #usertype="ngModel" ngModel>
+                            <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
+                          </div>
+                       
+                      </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <!-- <button class="btn btn-dark">Submit</button> -->
+                      <button type="submit" class="btn btn-dark">Submit</button>
+                        <!-- <a class="btn btn-dark" routerLink="/dashboard/peer">Submit</a> -->
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <a class="btn btn-success text-white btn-rounded mb-4 ml-5" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalUserForm">Add New</a>
+                </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>User Name</th>
+                        <th>Password</th>
+                        <th>Peer Type</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let udata of userdetail">
+                        <td>{{udata.username}}</td>
+                        <td>{{udata.password}}</td>
+                        <td>{{udata.usertype}}</td>
+                        <td [ngClass]="isSubmittingForm ? 'disabled-link' : ''" (click)="delUser(udata.id)"><i class="material-icons text-success font">delete</i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
       <button class="accordion">
         Order Details</button>
         <div class="content">
@@ -230,83 +311,8 @@
       
         </div>
 
-        <button class="accordion">
-            User</button>
-            <div class="content">
-              <div class="row">
-                <div class="col-lg-1">
-                  </div>
-                  <div class="col-lg-9">
-                  </div>
-                  <div class="col-lg-2 text-center">
-                    <br>
-                      <div class="modal fade" id="modalUserForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Add<span style="color:green">  User</span></h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeBtn3>
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <form name="userdata" #userdata="ngForm" (ngSubmit)="AddUser(userdata.value)">
-                          <div class="modal-body mx-5">
-                            <div class="md-form mb-3 mt-3">
-                              <input type="text"  class="form-control" placeholder="User Name" name="username" #username="ngModel" ngModel>
-                              <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
-                            </div>
-                            <div class="md-form mb-3">
-                                <input type="text" class="form-control" placeholder="Password" name="password" #password="ngModel" ngModel>
-                                <!-- <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label> -->
-                              </div>
-                            <div class="md-form mb-3 mt-3">
-                                <input type="text"  class="form-control" placeholder="user Type" name="usertype" #usertype="ngModel" ngModel>
-                                <!-- <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label> -->
-                              </div>
-                           
-                          </div>
-                          <div class="modal-footer d-flex justify-content-center">
-                            <!-- <button class="btn btn-dark">Submit</button> -->
-                          <button type="submit" class="btn btn-dark">Submit</button>
-                            <!-- <a class="btn btn-dark" routerLink="/dashboard/peer">Submit</a> -->
-                          </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text-center">
-                      <a class="btn btn-success text-white btn-rounded mb-4 ml-5" [ngClass]="isSubmittingForm ?  'disabled-link' : ''" data-toggle="modal" data-target="#modalUserForm">Add New</a>
-                    </div>
-                    </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th>User Name</th>
-                            <th>Password</th>
-                            <th>Peer Type</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let udata of userdetail">
-                            <td>{{udata.username}}</td>
-                            <td>{{udata.password}</td>
-                            <td>{{udata.usertype}}</td>
-                            <td [ngClass]="isSubmittingForm ? 'disabled-link' : ''" (click)="delUser(udata.id)"><i class="material-icons text-success font">delete</i></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                </div>
-              </div>
       
-      
-            </div>
-
-
+    
 
 
 
